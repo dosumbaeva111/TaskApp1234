@@ -2,32 +2,27 @@ package com.geek.taskapp.ui.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
-import com.bumptech.glide.Glide;
 import com.geek.taskapp.R;
 import com.geek.taskapp.databinding.FragmentHomeBinding;
+import com.geek.taskapp.models.Task;
 
 public class HomeFragment extends Fragment implements TaskAdapter.OnItemClickListener {
 
     private FragmentHomeBinding binding;
     private TaskAdapter adapter;
+    private Task task;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +45,8 @@ public class HomeFragment extends Fragment implements TaskAdapter.OnItemClickLis
         getParentFragmentManager().setFragmentResultListener("rk_task", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                String text = result.getString("text");
-                adapter.addItem(text);
+                task = (Task) result.getSerializable("text");
+                adapter.addItem(task);
             }
         });
 
@@ -69,10 +64,10 @@ public class HomeFragment extends Fragment implements TaskAdapter.OnItemClickLis
 
     @Override
     public void onLongClick(int position) {
-        String item = adapter.getItem(position);
+        Task task = adapter.getItem(position);
         new AlertDialog.Builder(requireContext())
                 .setTitle("Удаление")
-                .setMessage("Удалить запись \"" + item + "\" ?")
+                .setMessage("Удалить запись \"" + task + "\" ?")
                 .setNegativeButton("Нет", null)
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
@@ -80,5 +75,10 @@ public class HomeFragment extends Fragment implements TaskAdapter.OnItemClickLis
                         adapter.removeItem(position);
                     }
                 }).show();
+    }
+
+    @Override
+    public void onClick(int position) {
+
     }
 }

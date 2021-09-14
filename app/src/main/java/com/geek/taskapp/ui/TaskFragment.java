@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.geek.taskapp.R;
 import com.geek.taskapp.databinding.FragmentTaskBinding;
+import com.geek.taskapp.models.Task;
 
 public class TaskFragment extends Fragment {
     private FragmentTaskBinding binding;
@@ -35,13 +36,16 @@ public class TaskFragment extends Fragment {
 
     private void save() {
         String text = binding.editText.getText().toString();
+        if (text.isEmpty()) return;
+        long createdAt = System.currentTimeMillis();
+        Task task = new Task(text, createdAt);
         Bundle bundle = new Bundle();
-        bundle.putString("text", text);
+        bundle.putSerializable("text", task);
         getParentFragmentManager().setFragmentResult("rk_task", bundle);
-        openTaskFragment();
+        close();
     }
 
-    private void openTaskFragment() {
+    private void close() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();
     }

@@ -11,31 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.geek.taskapp.databinding.ItemBinding;
+import com.geek.taskapp.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
-    private List<String> list = new ArrayList<>();
+    private List<Task> list = new ArrayList<>();
     private OnItemClickListener listener;
-
-    public void setListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    public void addItems(List<String> list ){
-        this.list = list;
-        notifyDataSetChanged();
-    }
-
-    public String getItem(int position){
-        return list.get(position);
-    }
-
-    public void addItem(String text) {
-        list.add(text);
-        notifyDataSetChanged();
-    }
 
     @NonNull
     @Override
@@ -49,7 +32,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         if (position % 2 == 0){
             holder.binding.itemBg.setBackgroundColor(Color.BLACK);
         } else {
-            holder.binding.itemBg.setBackgroundColor(Color.WHITE);
+            holder.binding.itemBg.setBackgroundColor(Color.GRAY);
         }
 
         holder.itemView.setOnClickListener(v -> listener.onLongClick(position));
@@ -58,6 +41,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public void addItems(List<Task> list ){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+    public Task getItem(int position){
+        return list.get(position);
+    }
+
+    public void addItem(Task task) {
+        list.add(0,task);
+        notifyDataSetChanged();
     }
 
     public void removeItem(int position) {
@@ -73,11 +74,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             binding = itemView;
         }
 
-        public void onBind(String s) {
+        public void onBind(Task task) {
             //Конвертирование времени
-            String time = (String) android.text.format.DateFormat.format("HH:mm dd MMM yyyy", new Date());
-
-            binding.tvItem.setText(s);
+            String time = (String) android.text.format.DateFormat.format("HH:mm dd MMM yyyy", new Date(task.getCreatedAt()));
+            binding.tvItem.setText(task.getTitle());
             binding.tvCreatedAt.setText(time);
         }
     }
@@ -85,5 +85,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public interface OnItemClickListener{
 
         void onLongClick(int position);
+
+        void onClick(int position);
     }
 }

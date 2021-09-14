@@ -1,4 +1,4 @@
-package com.geek.taskapp.ui;
+package com.geek.taskapp.ui.profile;
 
 import android.content.Intent;
 import android.net.Uri;
