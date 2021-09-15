@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/drawable/onboarding_indicator_active.xml" value="0.2490740740740741" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/drawable/onboarding_indicator_inactive.xml" value="0.2490740740740741" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/drawable/tab_indicator.xml" value="0.2490740740740741" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/fragment_board.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/fragment_dashboard.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/fragment_profile.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/fragment_task.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/layout/list_board.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TaskApp2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.27447916666666666" />
       </map>
     </option>
