@@ -13,7 +13,7 @@ import com.geek.taskapp.databinding.ListBoardBinding;
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
     private String[] titles = new String[]{"SIMPLE ABROAD CALLS", "FREE WONEP TO WONEP", "NO HIDDEN CHARGES OR FEES"};
     private String[] descriptions = new String[]{"Wonep converts international calls to local calls without WiFi or data", "If the person you're calling also has Wonep the call will be entirely free", "We have a very small charge for non-Wonep calls to mobiles or landlines"};
-    private int[] imageViews = new int[]{R.drawable.onboard_page1, R.drawable.onboard_page2,R.drawable.onboard_page3};
+    private int[] animations = new int[]{R.raw.anim1, R.raw.anim2, R.raw.anim3};
     private OnStartClickListener onStartClickListener;
 
     public void setOnStartClickListener(OnStartClickListener onStartClickListener) {
@@ -38,6 +38,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ListBoardBinding binding;
+
         public ViewHolder(@NonNull ListBoardBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
@@ -46,9 +47,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         public void onBind(int position) {
             binding.textTitle.setText(titles[position]);
             binding.textDescription.setText(descriptions[position]);
-            binding.imageView.setImageResource(imageViews[position]);
+            binding.animView.setAnimation(animations[position]);
 
-            if (position == 2){
+            if (position == 2) {
                 binding.btnStart.setVisibility(View.VISIBLE);
             } else
                 binding.btnStart.setVisibility(View.INVISIBLE);
@@ -59,7 +60,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         }
     }
 
-    public interface OnStartClickListener{
+    public interface OnStartClickListener {
         void onClick();
     }
 }

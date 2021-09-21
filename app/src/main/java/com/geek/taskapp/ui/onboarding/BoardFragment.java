@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.geek.taskapp.Prefs;
 import com.geek.taskapp.R;
 import com.geek.taskapp.databinding.FragmentBoardBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -68,8 +69,10 @@ public class BoardFragment extends Fragment implements BoardAdapter.OnStartClick
     }
 
     private void navigateToHome() {
+        Prefs prefs = new Prefs(requireContext());
+        prefs.saveBoardState();
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        navController.navigate(R.id.navigation_home);
+        navController.navigateUp();
     }
 
     @Override

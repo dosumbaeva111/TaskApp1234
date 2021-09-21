@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        navController.navigate(R.id.boardFragment);
+
+        Prefs prefs = new Prefs(this);
+        if (!prefs.isBoardShown())
+            navController.navigate(R.id.boardFragment);
+
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -49,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 tabFragments.add(R.id.navigation_dashboard);
                 tabFragments.add(R.id.navigation_notifications);
                 tabFragments.add(R.id.profileFragment);
-                if (tabFragments.contains(destination.getId())){
+                if (tabFragments.contains(destination.getId())) {
                     navView.setVisibility(View.VISIBLE);
-                }else navView.setVisibility(View.GONE);
+                } else navView.setVisibility(View.GONE);
 
-                if (destination.getId() == R.id.boardFragment){
+                if (destination.getId() == R.id.boardFragment) {
                     getSupportActionBar().hide();
-                }else getSupportActionBar().show();
+                } else getSupportActionBar().show();
             }
         });
     }
